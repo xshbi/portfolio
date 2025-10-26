@@ -3,126 +3,624 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Akashvi - Portfolio</title>
+    <style>
+        /* ============================================
+           IMPORTS & RESETS
+           ============================================ */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* ============================================
+           GLOBAL STYLES
+           ============================================ */
+        body {
+            background-color: #FDEBD0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Main heading */
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            padding: 2rem 0;
+            color: #F75270;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Section headings */
+        h3 {
+            color: #F75270;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #F75270;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        h4 {
+            color: #DC143C;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            width: 100%;
+            background-color: #F7CAC9;
+            margin-bottom: 2rem;
+        }
+
+        .contact button {
+            background-color: #F75270;
+            color: #F7CAC9;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact button a {
+            color: #F7CAC9;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Individual button hover effects */
+        .contact button:nth-child(1):hover { background-color: #DC143C; } /* GitHub */
+        .contact button:nth-child(2):hover { background-color: #DC143C; } /* Email */
+        .contact button:nth-child(3):hover { background-color: #DC143C; } /* LinkedIn */
+        .contact button:nth-child(4):hover { background-color: #DC143C; } /* LeetCode */
+        .contact button:nth-child(5):hover { background-color: #DC143C; } /* CodeChef */
+        .contact button:nth-child(6):hover { background-color: #DC143C; } /* Contact Form */
+
+        .contact button:hover {
+            transform: scale(1.05);
+        }
+
+        /* ============================================
+           CONTENT SECTIONS
+           ============================================ */
+        /* Container for all content sections */
+        .about,
+        .skills,
+        .Education,
+        .Project,
+        .Internship {
+            max-width: 1200px;
+            margin: 0 auto 3rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* About section */
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* ============================================
+           SKILLS SECTION
+           ============================================ */
+        .skills-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .skill-category {
+            flex: 1;
+            min-width: 200px;
+            background-color: #F7CAC9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-category h4 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #DC143C;
+            text-align: center;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .skill-category li {
+            padding: 0.5rem 0;
+            font-size: 1rem;
+            color: #333;
+            text-align: center;
+            border-bottom: 1px solid rgba(220, 20, 60, 0.2);
+        }
+
+        .skill-category li:last-child {
+            border-bottom: none;
+        }
+
+        /* ============================================
+           EDUCATION SECTION
+           ============================================ */
+        .Education ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .Education li {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background-color: #F7CAC9;
+            border-radius: 6px;
+            font-size: 1.05rem;
+        }
+
+        /* ============================================
+           PROJECTS SECTION
+           ============================================ */
+        .Project p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: #555;
+        }
+
+        .project {
+            background-color: #F7CAC9;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            border-left: 5px solid #DC143C;
+        }
+
+        .project h4 {
+            margin-bottom: 1rem;
+        }
+
+        .project p {
+            margin-bottom: 0.8rem;
+            color: #333;
+        }
+
+        .project ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .project li {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .project a {
+            color: #DC143C;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .project a:hover {
+            color: #F75270;
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           INTERNSHIP SECTION
+           ============================================ */
+        .Internship ul {
+            background-color: #F7CAC9;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            list-style: none;
+        }
+
+        .Internship li {
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .Internship strong {
+            color: #DC143C;
+        }
+
+        /* ============================================
+           FOOTER SECTION
+           ============================================ */
+        .footer {
+            position: relative;
+            width: 100%;
+            background: #F75270;
+            min-height: 100px;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 4rem;
+        }
+
+        /* Social icons */
+        .social-icon,
+        .menu {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .social-icon__item,
+        .menu__item {
+            list-style: none;
+        }
+
+        .social-icon__link {
+            font-size: 2rem;
+            color: #fff;
+            margin: 0 10px;
+            display: inline-block;
+            transition: 0.5s;
+        }
+
+        .social-icon__link:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Footer menu */
+        .menu__link {
+            font-size: 1.2rem;
+            color: #fff;
+            margin: 0 10px;
+            display: inline-block;
+            transition: 0.5s;
+            text-decoration: none;
+            opacity: 0.75;
+            font-weight: 300;
+        }
+
+        .menu__link:hover {
+            opacity: 1;
+        }
+
+        .footer p {
+            color: #fff;
+            margin: 15px 0 10px 0;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        /* Animated wave background */
+        .wave {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("https://i.ibb.co/wQZVxxk/wave.png");
+            background-size: 1000px 100px;
+        }
+
+        .wave#wave1 {
+            z-index: 1000;
+            opacity: 1;
+            bottom: 0;
+            animation: animateWaves 4s linear infinite;
+        }
+
+        .wave#wave2 {
+            z-index: 999;
+            opacity: 0.5;
+            bottom: 10px;
+            animation: animate 4s linear infinite;
+        }
+
+        .wave#wave3 {
+            z-index: 1000;
+            opacity: 0.2;
+            bottom: 15px;
+            animation: animateWaves 3s linear infinite;
+        }
+
+        .wave#wave4 {
+            z-index: 999;
+            opacity: 0.7;
+            bottom: 20px;
+            animation: animate 3s linear infinite;
+        }
+
+        /* Wave animations */
+        @keyframes animateWaves {
+            0% {
+                background-position-x: 1000px;
+            }
+            100% {
+                background-position-x: 0px;
+            }
+        }
+
+        @keyframes animate {
+            0% {
+                background-position-x: -1000px;
+            }
+            100% {
+                background-position-x: 0px;
+            }
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            .about,
+            .skills,
+            .Education,
+            .Project,
+            .Internship {
+                padding: 1.5rem;
+            }
+
+            .skills-container {
+                flex-direction: column;
+            }
+
+            .skill-category {
+                min-width: 100%;
+            }
+
+            .contact button {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
-    <h1>Porfolio</h1>
-    <h2>Akashvi</h2>
+    <!-- ============================================
+         HEADER
+         ============================================ -->
+    <h1>Portfolio</h1>
+
+    <!-- ============================================
+         CONTACT SECTION
+         Social links and contact buttons
+         ============================================ -->
     <div class="contact">
-    <a href="https://github.com/xshbi">github</a>
-    <a href="mailto:akashvi277@outlook.com" >Mail me</a>
-    <a href="http://www.linkedin.com/in/xashbe">linkedin</a>
-    <a href="https://leetcode.com/u/yDJpsZ3x59/">leetcode</a>
-    <a href="https://www.codechef.com/users/cool_halo_17">codechef</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKrKIAdp9xCSRwrAqJdt_QnYNS_y1xQnJHSPLFAIPqr0CuNQ/viewform?usp=header">Contact me</a>
+        <button><a href="https://github.com/xshbi" target="_blank" rel="noopener">GitHub</a></button>
+        <button><a href="mailto:akashvi277@outlook.com">Mail Me</a></button>
+        <button><a href="http://www.linkedin.com/in/xashbe" target="_blank" rel="noopener">LinkedIn</a></button>
+        <button><a href="https://leetcode.com/u/yDJpsZ3x59/" target="_blank" rel="noopener">LeetCode</a></button>
+        <button><a href="https://www.codechef.com/users/cool_halo_17" target="_blank" rel="noopener">CodeChef</a></button>
+        <button><a href="https://docs.google.com/forms/d/e/1FAIpQLSeKrKIAdp9xCSRwrAqJdt_QnYNS_y1xQnJHSPLFAIPqr0CuNQ/viewform?usp=header" target="_blank" rel="noopener">Contact Me</a></button>
     </div>
 
-
-
+    <!-- ============================================
+         ABOUT SECTION
+         Brief introduction
+         ============================================ -->
     <div class="about">
         <h3>About Me</h3>
-        <p>I am Akashvi, a passionate programmer and web developer. I love creating beautiful and functional websites.</p>
-    </div>
-    <div class="skills">
-        <h3>Skills</h3>
-        
-            <h4>Language</h4>
-            <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>Python</li>
-            <li>Java</li>
-        </ul>
-        <h4>Frameworks</h4>
-        <ul>
-            <li>React</li>
-            <li>Django</li>
-            <li>Flask</li>
-            <li>bootspring</li>
-            <li>Vue</li>
-        </ul>
-        <h4>Extras</h4>
-        <ul>
-            <li>Git</li>
-            <li>Docker</li>
-            <li>AWS</li>
-            <li>Linux</li>
-        </ul>
+        <p>I am Akashvi, a passionate programmer and web developer. I love creating beautiful and functional websites that provide exceptional user experiences. With expertise in full-stack development and AI technologies, I'm dedicated to building innovative solutions.</p>
     </div>
 
+    <!-- ============================================
+         SKILLS SECTION
+         Technical skills categorized by type
+         ============================================ -->
+    <div class="skills">
+        <h3>Skills</h3>
+        <div class="skills-container">
+            <!-- Programming Languages -->
+            <div class="skill-category">
+                <h4>Languages</h4>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>Python</li>
+                    <li>Java</li>
+                </ul>
+            </div>
+
+            <!-- Frameworks & Libraries -->
+            <div class="skill-category">
+                <h4>Frameworks</h4>
+                <ul>
+                    <li>React</li>
+                    <li>Django</li>
+                    <li>Flask</li>
+                    <li>Spring Boot</li>
+                    <li>Vue</li>
+                </ul>
+            </div>
+
+            <!-- Additional Tools -->
+            <div class="skill-category">
+                <h4>Tools & Extras</h4>
+                <ul>
+                    <li>Git</li>
+                    <li>Docker</li>
+                    <li>AWS</li>
+                    <li>Linux</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         EDUCATION SECTION
+         Academic background
+         ============================================ -->
     <div class="Education">
         <h3>Education</h3>
         <ul>
             <li>Bachelor of Technology in Computer Science - VIT Bhopal University (2021-2025)</li>
-            <li>G.M.S.S-16 Model school-Chandigarh (68.89%-2020)</li>
-            <li>Dav model school 15- Chandigarh (72.2%-2018)</li>
-
+            <li>G.M.S.S-16 Model School - Chandigarh (68.89% - 2020)</li>
+            <li>DAV Model School 15 - Chandigarh (72.2% - 2018)</li>
         </ul>
     </div>
 
-
-    <div class="Project experience ">
+    <!-- ============================================
+         PROJECTS SECTION
+         Detailed project descriptions
+         ============================================ -->
+    <div class="Project">
         <h3>Projects</h3>
-        <p>You may explore my work on <a href="http://github.com/xshbi">GitHub</a>. Below, I’ve highlighted some of my most significant projects:</p>
+        <p>You may explore my work on <a href="http://github.com/xshbi" target="_blank" rel="noopener">GitHub</a>. Below, I've highlighted some of my most significant projects:</p>
 
-
+        <!-- Project 1: Library Management System -->
         <article class="project" id="library-management-system">
             <h4>Library Management System</h4>
             <p><strong>Duration:</strong> 15 November 2022 - 10 February 2023</p>
             <p><strong>Supervisors:</strong> Dr. Mrityunjay Singh, Prof. B, and Prof. C (CMU)</p>
-            <p>Library Management System: A library management system is software that is designed to manage all the functions of a library. It helps librarians to maintain the database of new books and books that are borrowed by members along with their due dates. Also, allows students to request the book of their choice.</p>
+            <p>A comprehensive library management system designed to manage all library functions. It helps librarians maintain databases of new books and borrowed items with due dates, while allowing students to request books of their choice.</p>
             <ul>
-                <li><strong>Technology used:</strong> HTML/CSS, Django, Bootstrap (CDN links)</li>
-                <li><strong>Team project:</strong> 5 members</li>
+                <li><strong>Technology Used:</strong> HTML/CSS, Django, Bootstrap (CDN links)</li>
+                <li><strong>Team Project:</strong> 5 members</li>
                 <li><strong>Role:</strong> Front End Developer</li>
-                <li><strong>Report:</strong> <a href="https://docs.google.com/document/d/1NWuV9X2wXyVuPF4j71c8j8xz3wJaBl4V/edit">Link</a></li>
+                <li><strong>Report:</strong> <a href="https://docs.google.com/document/d/1NWuV9X2wXyVuPF4j71c8j8xz3wJaBl4V/edit" target="_blank" rel="noopener">View Report</a></li>
             </ul>
         </article>
 
+        <!-- Project 2: Job Sewa -->
         <article class="project" id="job-sewa">
             <h4>Job Sewa</h4>
             <p><strong>Duration:</strong> January 2024 - May 2024</p>
             <p><strong>Supervisors:</strong> Dr. Tauseef Qamar MD</p>
             <p><strong>Reviewers:</strong> Dr. Rajit Nair and Mr. Ashfaq Ahmad Najar</p>
-            <p>Job Sewa: This is a platform where the user can get jobs by applying for the required skills.</p>
+            <p>A job search platform where users can find and apply for jobs based on their required skills. The platform connects job seekers with relevant opportunities.</p>
             <ul>
-                <li><strong>Technology used:</strong> HTML, CSS (Tailwind), Next.js</li>
-                <li><strong>Team project:</strong> 7 members</li>
-                <li><strong>Role:</strong> Backend</li>
-                <li><strong>Links:</strong> <a href="https://job-sewa.vercel.app/">Application</a>, <a href="https://github.com/xshbi/JobSewa">Github</a></li>
+                <li><strong>Technology Used:</strong> HTML, CSS (Tailwind), Next.js</li>
+                <li><strong>Team Project:</strong> 7 members</li>
+                <li><strong>Role:</strong> Backend Developer</li>
+                <li><strong>Links:</strong> 
+                    <a href="https://job-sewa.vercel.app/" target="_blank" rel="noopener">Live Application</a> | 
+                    <a href="https://github.com/xshbi/JobSewa" target="_blank" rel="noopener">GitHub Repository</a>
+                </li>
             </ul>
         </article>
-
     </div>
 
+    <!-- ============================================
+         INTERNSHIP SECTION
+         Professional experience
+         ============================================ -->
     <div class="Internship">
         <h3>Internships</h3>
+        
+        <!-- Internship 1: Personify -->
         <ul>
-            <li><strong>Company:</strong> Personify(1stop)</li>
-            <li><strong>Duration:</strong> January2025 - March 2025</li>
+            <li><strong>Company:</strong> Personify (1stop)</li>
+            <li><strong>Duration:</strong> January 2025 - March 2025</li>
             <li><strong>Role:</strong> AI Intern</li>
-            <li><strong>Description:</strong> Worked on AI-based projects involving [Text classification using tensorlow, e.g., machine learning,
-deep learning, data analysis, NLP]. - Gained hands-on experience with [mention tools, e.g., Python,
-TensorFlow, PyTorch, etc.]. </li>
-        </ul>
-        <ul>
-            <li><strong>Company:</strong> Unified mentor</li>
-            <li><strong>Duration:</strong>   March 2025- April 2025</li>
-            <li><strong>Role:</strong> Mern stack Intern</li>
-            <li><strong>Description:</strong> Developing full-stack web applications using MongoDB, Express.js, React, and Node.js. - Collaborat-
-ing on backend and frontend development, API integration, and database management. - Enhancing
-performance and security of web applications. </li>
+            <li><strong>Description:</strong> Worked on AI-based projects involving text classification using TensorFlow, machine learning, deep learning, data analysis, and NLP. Gained hands-on experience with Python, TensorFlow, and PyTorch.</li>
         </ul>
 
+        <!-- Internship 2: Unified Mentor -->
+        <ul>
+            <li><strong>Company:</strong> Unified Mentor</li>
+            <li><strong>Duration:</strong> March 2025 - April 2025</li>
+            <li><strong>Role:</strong> MERN Stack Intern</li>
+            <li><strong>Description:</strong> Developing full-stack web applications using MongoDB, Express.js, React, and Node.js. Collaborating on backend and frontend development, API integration, and database management. Enhancing performance and security of web applications.</li>
+        </ul>
     </div>
 
+    <!-- ============================================
+         FOOTER SECTION
+         Social links, navigation, and credits
+         ============================================ -->
+    <div class="footer">
+        <footer class="footer">
+            <!-- Animated wave decoration -->
+            <div class="waves">
+                <div class="wave" id="wave1"></div>
+                <div class="wave" id="wave2"></div>
+                <div class="wave" id="wave3"></div>
+                <div class="wave" id="wave4"></div>
+            </div>
 
-    
+            <!-- Social media icons -->
+            <ul class="social-icon">
+                <li class="social-icon__item">
+                    <a class="social-icon__link" href="https://github.com/xshbi" target="_blank" rel="noopener">
+                        <ion-icon name="logo-github"></ion-icon>
+                    </a>
+                </li>
+                <li class="social-icon__item">
+                    <a class="social-icon__link" href="#" target="_blank" rel="noopener">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                    </a>
+                </li>
+                <li class="social-icon__item">
+                    <a class="social-icon__link" href="http://www.linkedin.com/in/xashbe" target="_blank" rel="noopener">
+                        <ion-icon name="logo-linkedin"></ion-icon>
+                    </a>
+                </li>
+                <li class="social-icon__item">
+                    <a class="social-icon__link" href="#" target="_blank" rel="noopener">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                </li>
+            </ul>
 
+            <!-- Footer navigation menu -->
+            <ul class="menu">
+                <li class="menu__item"><a class="menu__link" href="#top">Home</a></li>
+                <li class="menu__item"><a class="menu__link" href=".about">About</a></li>
+                <li class="menu__item"><a class="menu__link" href=".skills">Skills</a></li>
+                <li class="menu__item"><a class="menu__link" href=".Project">Projects</a></li>
+                <li class="menu__item"><a class="menu__link" href=".contact">Contact</a></li>
+            </ul>
+
+            <!-- Copyright notice -->
+            <p>&copy; 2025 Akashvi | All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <!-- Ion Icons library for social media icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
-
 </html>
-
